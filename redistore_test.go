@@ -112,7 +112,7 @@ func TestRediStore(t *testing.T) {
 	{
 		// RedisStore
 		addr := setup()
-		store, err := NewRediStore(10, "tcp", addr, "", []byte("secret-key"))
+		store, err := NewRediStore(10, "tcp", addr, "", "", []byte("secret-key"))
 		if err != nil {
 			t.Fatal(err.Error())
 		}
@@ -149,7 +149,7 @@ func TestRediStore(t *testing.T) {
 	{
 
 		addr := setup()
-		store, err := NewRediStore(10, "tcp", addr, "", []byte("secret-key"))
+		store, err := NewRediStore(10, "tcp", addr, "", "", []byte("secret-key"))
 		if err != nil {
 			t.Fatal(err.Error())
 		}
@@ -201,7 +201,7 @@ func TestRediStore(t *testing.T) {
 	// RedisStore
 	{
 		addr := setup()
-		store, err := NewRediStore(10, "tcp", addr, "", []byte("secret-key"))
+		store, err := NewRediStore(10, "tcp", addr, "", "", []byte("secret-key"))
 		if err != nil {
 			t.Fatal(err.Error())
 		}
@@ -235,7 +235,7 @@ func TestRediStore(t *testing.T) {
 	// Custom type
 	{
 		addr := setup()
-		store, err := NewRediStore(10, "tcp", addr, "", []byte("secret-key"))
+		store, err := NewRediStore(10, "tcp", addr, "", "", []byte("secret-key"))
 		if err != nil {
 			t.Fatal(err.Error())
 		}
@@ -297,7 +297,7 @@ func TestRediStore(t *testing.T) {
 
 	{
 		addr := setup()
-		store, err := NewRediStore(10, "tcp", addr, "", []byte("secret-key"))
+		store, err := NewRediStore(10, "tcp", addr, "", "", []byte("secret-key"))
 		if err != nil {
 			t.Fatal(err.Error())
 		}
@@ -326,7 +326,7 @@ func TestRediStore(t *testing.T) {
 	// RedisStoreWithDB
 	{
 		addr := setup()
-		store, err := NewRediStoreWithDB(10, "tcp", addr, "", "1", []byte("secret-key"))
+		store, err := NewRediStoreWithDB(10, "tcp", addr, "", "", "1", []byte("secret-key"))
 		if err != nil {
 			t.Fatal(err.Error())
 		}
@@ -376,7 +376,7 @@ func TestRediStore(t *testing.T) {
 	// RedisStore
 	{
 		addr := setup()
-		store, err := NewRediStore(10, "tcp", addr, "", []byte("secret-key"))
+		store, err := NewRediStore(10, "tcp", addr, "", "", []byte("secret-key"))
 		store.SetSerializer(JSONSerializer{})
 		if err != nil {
 			t.Fatal(err.Error())
@@ -423,7 +423,7 @@ func TestRediStore(t *testing.T) {
 }
 
 func TestPingGoodPort(t *testing.T) {
-	store, _ := NewRediStore(10, "tcp", ":6379", "", []byte("secret-key"))
+	store, _ := NewRediStore(10, "tcp", ":6379", "", "", []byte("secret-key"))
 	defer store.Close()
 	ok, err := store.ping()
 	if err != nil {
@@ -435,7 +435,7 @@ func TestPingGoodPort(t *testing.T) {
 }
 
 func TestPingBadPort(t *testing.T) {
-	store, _ := NewRediStore(10, "tcp", ":6378", "", []byte("secret-key"))
+	store, _ := NewRediStore(10, "tcp", ":6378", "", "", []byte("secret-key"))
 	defer store.Close()
 	_, err := store.ping()
 	if err == nil {
@@ -445,7 +445,7 @@ func TestPingBadPort(t *testing.T) {
 
 func ExampleRediStore() {
 	// RedisStore
-	store, err := NewRediStore(10, "tcp", ":6379", "", []byte("secret-key"))
+	store, err := NewRediStore(10, "tcp", ":6379", "", "", []byte("secret-key"))
 	if err != nil {
 		panic(err)
 	}
